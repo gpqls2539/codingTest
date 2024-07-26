@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict!';
+        
+        /**
+         * 01) 양꼬치
+         * 문제 설명 : 머쓱이네 양꼬치 가게는 10인분을 먹으면 음료수 하나를 서비스로 줍니다. 양꼬치는 1인분에 12,000원, 음료수는 2,000원입니다. 정수 n과 k가 매개변수로 주어졌을 때, 양꼬치 n인분과 음료수 k개를 먹었다면 총얼마를 지불해야 하는지 return 하도록 solution 함수를 완성해보세요.
+         * 제한 사항
+         * : 1 ≤ num_list의 길이 ≤ 100
+         * : 0 ≤ num_list의 원소 ≤ 1,000
+         * :서비스로 받은 음료수는 모두 마십니다.
+         */
+        
+        function solution01(n, k) {
+            let count = Math.floor(n / 10);
+            let foodPrice = 12000 * n;
+            let drinkPrice = 2000 * k - ( 2000 * count);
+
+            return foodPrice + drinkPrice;
+        }
+        console.log('양꼬치', solution01(64, 6));
+
+        /**
+         * 02) 점의 위치 구하기
+         * 문제 설명 : 사분면은 한 평면을 x축과 y축을 기준으로 나눈 네 부분입니다. 사분면은 아래와 같이 1부터 4까지 번호를매깁니다.
+         * : x 좌표와 y 좌표가 모두 양수이면 제1사분면에 속합니다.
+         * : x 좌표가 음수, y 좌표가 양수이면 제2사분면에 속합니다.
+         * : x 좌표와 y 좌표가 모두 음수이면 제3사분면에 속합니다.
+         * : x 좌표가 양수, y 좌표가 음수이면 제4사분면에 속합니다.
+         * x 좌표 (x, y)를 차례대로 담은 정수 배열 dot이 매개변수로 주어집니다. 좌표 dot이 사분면 중 어디에 속하는지 1, 2, 3, 4 중 하나를 return 하도록 solution 함수를 완성해주세요.
+         * 
+         * 제한 사항
+         * : dot의 길이 = 2
+         * : dot[0]은 x좌표를, dot[1]은 y좌표를 나타냅니다
+         * : -500 ≤ dot의 원소 ≤ 500
+         * : dot의 원소는 0이 아닙니다.
+         */
+        function solution02(dot) {
+            
+        }
+        console.log('점의 위치 구하기', solution02([2, 4]));
+
+
+    </script>
+</body>
+</html>
