@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict!';
+        
+        /**
+         * 01) 369게임
+         * 문제 설명 : 머쓱이는 친구들과 369게임을 하고 있습니다. 369게임은 1부터 숫자를 하나씩 대며 3, 6, 9가 들어가는 숫자는 숫자 대신 3, 6, 9의 개수만큼 박수를 치는 게임입니다. 머쓱이가 말해야하는 숫자 order가 매개변수로 주어질 때, 머쓱이가 쳐야할 박수 횟수를 return 하도록 solution 함수를 완성해보세요.
+         * 제한 사항
+         * : 1 ≤ order ≤ 1,000,000
+         */
+        
+        function solution01(order) {
+            var answer = order.toString().split('')
+            .filter((num) => num % 3 == 0 && num != 0).length;
+            
+            return answer;
+        }
+        console.log('01) 369게임', solution01('3')); // 1
+
+        /**
+         * 02) 외계행성의 나이
+         * 문제 설명 : 우주여행을 하던 머쓱이는 엔진 고장으로 PROGRAMMERS-962 행성에 불시착하게 됐습니다. 입국심사에서 나이를 말해야 하는데, PROGRAMMERS-962 행성에서는 나이를 알파벳으로 말하고 있습니다. a는 0, b는 1, c는 2, ..., j는 9입니다. 예를 들어 23살은 cd, 51살은 fb로 표현합니다. 나이 age가 매개변수로 주어질 때 PROGRAMMER-962식 나이를 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : age는 자연수입니다.
+         * : age ≤ 1,000
+         * : PROGRAMMERS-962 행성은 알파벳 소문자만 사용합니다.
+         */
+        
+        function solution02(age) {
+            // var answer = [];
+            // let arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+            // let ageArr = age.toString().split('');
+
+            // for (let i = 0; i < arr.length; i++) {
+            //     for (let j = 0; j < ageArr.length; j++) {
+            //         answer.push(arr[ageArr[j]]);
+            //     }
+            // }
+            // return answer.splice(0, ageArr.length).join('');
+
+            // map 사용 풀이
+            return age.toString().split('')
+            .map((num) => 'abcdefghij'[num])
+            .join('');
+        }
+        console.log('02) 외계행성의 나이', solution02('23')); // cd
+
+        /**
+         * 03) 7의 개수
+         * 문제 설명 : 머쓱이는 행운의 숫자 7을 가장 좋아합니다. 정수 배열 array가 매개변수로 주어질 때, 7이 총 몇 개 있는지 return 하도록 solution 함수를 완성해보세요.
+         * 제한 사항
+         * : 1 ≤ array의 길이 ≤ 100
+         * : 0 ≤ array의 원소 ≤ 100,000
+         */
+        
+        function solution03(array) {
+            var answer = [...array].join('').split('').filter((num) => Number(num) === 7).length;
+            return answer;
+        }
+        console.log('03) 7의 개수', solution03([7, 77, 17])); // 4
+
+        /**
+         * 04) 암호 해독
+        * 문제 설명 : 군 전략가 머쓱이는 전쟁 중 적군이 다음과 같은 암호 체계를 사용한다는 것을 알아냈습니다.
+
+        - 암호화된 문자열 cipher를 주고받습니다.
+        - 그 문자열에서 code의 배수 번째 글자만 진짜 암호입니다.
+
+        문자열 cipher와 정수 code가 매개변수로 주어질 때 해독된 암호 문자열을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 1 ≤ cipher의 길이 ≤ 1,000
+         * : 1 ≤ code ≤ cipher의 길이
+         * : cipher는 소문자와 공백으로만 구성되어 있습니다.
+         * : 공백도 하나의 문자로 취급합니다.
+         */
+        
+        function solution04(cipher, code) {
+            var copyArr = [...cipher]
+            var answer = [];
+            for (let i = 0; i < cipher.length; i++) {
+                let cut = copyArr.splice(0, code);
+                answer.push(cut[code - 1])
+            }
+            return answer.join('');
+        }
+        console.log('04) 암호 해독', solution04('pfqallllabwaoclk', '2')); // fallback
+
+        /**
+         * 05) 진료 순서 정하기
+        * 문제 설명 : 외과의사 머쓱이는 응급실에 온 환자의 응급도를 기준으로 진료 순서를 정하려고 합니다. 정수 배열 emergency가 매개변수로 주어질 때 응급도가 높은 순서대로 진료 순서를 정한 배열을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 중복된 원소는 없습니다.
+         * : 1 ≤ emergency의 길이 ≤ 10
+         * : 1 ≤ emergency의 원소 ≤ 100
+         */
+        
+        function solution05(emergency) {
+            var arrSort = [...emergency].sort((num1, num2) => {
+                return num2 - num1;
+            });
+            return emergency.map((e, i) => arrSort.indexOf(e) + 1);
+        }
+        console.log('05) 진료 순서 정하기', solution05([3, 76, 24])); // [3, 1, 2]
+
+        /**
+         * 06) 잘라서 배열로 저장하기
+        * 문제 설명 : 문자열 my_str과 n이 매개변수로 주어질 때, my_str을 길이 n씩 잘라서 저장한 배열을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 중복된 원소는 없습니다.
+         * : 1 ≤ emergency의 길이 ≤ 10
+         * : 1 ≤ emergency의 원소 ≤ 100
+         */
+        
+        function solution06(my_str, n) {
+            var answer = [...my_str];
+            let newArr = [];
+            for (let i = 0; i < my_str.length; i++) {
+                let push = answer.splice(0, n).join('');
+                if(push.length > 0) {
+                    newArr.push(push);
+                }
+            }
+            return newArr;
+        }
+        console.log('06) 잘라서 배열로 저장하기', solution06('abcdef123', '3')); // 	["abc", "def", "123"]
+
+        /**
+         * 07) 숨어있는 숫자의 덧셈(2)
+        * 문제 설명 : 문자열 my_string이 매개변수로 주어집니다. my_string은 소문자, 대문자, 자연수로만 구성되어있습니다. my_string안의 자연수들의 합을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 1 ≤ my_string의 길이 ≤ 1,000
+         * : 1 ≤ my_string 안의 자연수 ≤ 1000
+         * : 연속된 수는 하나의 숫자로 간주합니다.
+         * : 000123과 같이 0이 선행하는 경우는 없습니다.
+         * : 문자열에 자연수가 없는 경우 0을 return 해주세요.
+         */
+        
+        function solution07(my_string) {
+            var answer = 0;
+            let numArr = my_string.split(/[a-zA-Z]/g).filter((n) => n / 0);
+            for (let i = 0; i < numArr.length; i++) {
+                answer += Number(numArr[i]);
+            }
+            return answer;
+        }
+        console.log('07) 숨어있는 숫자의 덧셈(2)', solution07('aAb1B2cC34oOp')); // 37
+
+        /**
+         * 08) A로 B 만들기
+        * 문제 설명 : 문자열 before와 after가 매개변수로 주어질 때, before의 순서를 바꾸어 after를 만들 수 있으면 1을, 만들 수 없으면 0을 return 하도록 solution 함수를 완성해보세요.
+         * 제한 사항
+         * : 0 < before의 길이 == after의 길이 < 1,000
+         * : before와 after는 모두 소문자로 이루어져 있습니다.
+         */
+        
+        function solution08(before, after) {
+            let arr01 = [...before].sort();
+            let arr02 = [...after].sort();
+
+            var answer = arr01.toString() === arr02.toString() ? 1 : 0;
+            return answer;
+        }
+        console.log('08) A로 B 만들기', solution08('olleh', 'hello')); // 1
+    </script>
+</body>
+</html>
