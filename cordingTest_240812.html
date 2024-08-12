@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict!';
+        
+        /**
+         * 01) 순서쌍의 개수
+         * 문제 설명 : 순서쌍이란 두 개의 숫자를 순서를 정하여 짝지어 나타낸 쌍으로 (a, b)로 표기합니다. 자연수 n이 매개변수로 주어질 때 두 숫자의 곱이 n인 자연수 순서쌍의 개수를 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 1 ≤ n ≤ 1,000,000
+         */
+        
+        function solution01(n) {
+            // 약수의 개수
+            var answer = 0;
+            for (let i = 0; i <= n; i++) {
+                if(n % i === 0) answer++;
+            }
+
+            return answer;
+        }
+        console.log('01) 순서쌍의 개수', solution01(100)); // 9
+
+        /**
+         * 02) 약수 구하기
+         * 문제 설명 : 정수 n이 매개변수로 주어질 때, n의 약수를 오름차순으로 담은 배열을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 1 ≤ n ≤ 10,000
+         */
+        
+        function solution02(n) {
+            var answer = [];
+            for (let i = 1; i <= n; i++) {
+                if(n % i === 0) {
+                    answer.push(i); 
+                }
+            }
+            return answer;
+        }
+        console.log('02) 약수 구하기', solution02(24)); // [1, 2, 3, 4, 6, 8, 12, 24]
+
+        /**
+         * 03) 개미 군단
+         * 문제 설명 : 개미 군단이 사냥을 나가려고 합니다. 개미군단은 사냥감의 체력에 딱 맞는 병력을 데리고 나가려고 합니다. 장군개미는 5의 공격력을, 병정개미는 3의 공격력을 일개미는 1의 공격력을 가지고 있습니다. 예를 들어 체력 23의 여치를 사냥하려고 할 때, 일개미 23마리를 데리고 가도 되지만, 장군개미 네 마리와 병정개미 한 마리를 데리고 간다면 더 적은 병력으로 사냥할 수 있습니다. 사냥감의 체력 hp가 매개변수로 주어질 때, 사냥감의 체력에 딱 맞게 최소한의 병력을 구성하려면 몇 마리의 개미가 필요한지를 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : hp는 자연수입니다.
+         * : 0 ≤ hp ≤ 1000
+         */
+        
+        function solution03(hp) {
+            // let a = parseInt(hp / 5); // 장군
+            // let b = 0; // 병정
+            // let c = 0; // 일
+            // if(hp - (a * 5) >= 3) {
+            //     b = parseInt((hp - (a * 5)) / 3);
+            //     if(hp - (a * 5) - 3 !== 0) {
+            //         c = parseInt(b / 1)
+            //     }
+            // } else {
+            //     c = parseInt((hp - (a * 5)) / 1)
+            // }
+
+            // console.log(a, b, c)
+            // return a + b + c;
+
+            // 좀 더 깔끔한 풀이
+            return Math.floor(hp / 5) + Math.floor((hp % 5) / 3) + (hp % 5) % 3
+        }
+        console.log('03) 개미 군단', solution03(6)); // 2
+
+        /**
+         * 04) 2차원으로 만들기
+         * 문제 설명 : 정수 배열 num_list와 정수 n이 매개변수로 주어집니다. num_list를 다음 설명과 같이 2차원 배열로 바꿔 return하도록 solution 함수를 완성해주세요.
+
+        num_list가 [1, 2, 3, 4, 5, 6, 7, 8] 로 길이가 8이고 n이 2이므로 num_list를 2 * 4 배열로 다음과 같이 변경합니다. 2차원으로 바꿀 때에는 num_list의 원소들을 앞에서부터 n개씩 나눠 2차원 배열로 변경합니다.
+         * 제한 사항
+         * : num_list의 길이는 n의 배 수개입니다.
+         * : 0 ≤ num_list의 길이 ≤ 150
+         * : 2 ≤ n < num_list의 길이
+         */
+        
+        function solution04(num_list, n) {
+            var answer = [];
+            let arr = [...num_list];
+            for (let i = 0; i < num_list.length; i++) {
+                if(arr.length !== 0) {
+                    let splice = arr.splice(0, n);
+                    answer.push(splice);
+                } 
+            }
+
+            return answer;
+        }
+        console.log('04) 2차원으로 만들기', solution04([100, 95, 2, 4, 5, 6, 18, 33, 948]	, 3)); // [[100, 95, 2], [4, 5, 6], [18, 33, 948]]
+
+    </script>
+</body>
+</html>
