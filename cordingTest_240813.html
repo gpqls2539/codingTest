@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict!';
+        
+        /**
+         * 01) 배열 회전시키기
+         * 문제 설명 : 정수가 담긴 배열 numbers와 문자열 direction가 매개변수로 주어집니다. 배열 numbers의 원소를 direction방향으로 한 칸씩 회전시킨 배열을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 3 ≤ numbers의 길이 ≤ 20
+         * : direction은 "left" 와 "right" 둘 중 하나입니다.
+         */
+        
+        function solution01(numbers, direction) {
+            let arr = [...numbers];
+            let newArr = [];
+            
+            if(direction === 'right') {
+                const pop = arr.pop();
+                for (let i = 0; i < arr.length; i++) {
+                    newArr.push(arr[i])
+                }
+                newArr.unshift(pop);
+            } else {
+                const shift = arr.shift();
+                for (let i = 0; i < arr.length; i++) {    
+                    newArr.push(arr[i]);
+                }
+                newArr.push(shift);
+            }
+
+            return newArr;
+        }
+        console.log('01) 배열 회전시키기', solution01([4, 455, 6, 4, -1, 45, 6], 'left')); // [455, 6, 4, -1, 45, 6, 4]
+        
+        /**
+         * 02) 피자 나눠 먹기 (2)
+         * 문제 설명 : 머쓱이네 피자가게는 피자를 여섯 조각으로 잘라 줍니다. 피자를 나눠먹을 사람의 수 n이 매개변수로 주어질 때, n명이 주문한 피자를 남기지 않고 모두 같은 수의 피자 조각을 먹어야 한다면 최소 몇 판을 시켜야 하는지를 return 하도록 solution 함수를 완성해보세요.
+         * 제한 사항
+         * : 1 ≤ n ≤ 100
+         */
+        
+        function solution02(n) {
+            let answer = 0;
+            for(let i = 1; i <= n; i++) {
+                if((i * 6) % n === 0) {
+                    answer = i
+                    return answer;
+                }
+            }
+        }
+        console.log('02) 피자 나눠 먹기 (2)', solution02(10)); // 5
+
+        /**
+         * 03) 중복된 문자 제거
+         * 문제 설명 : 문자열 my_string이 매개변수로 주어집니다. my_string에서 중복된 문자를 제거하고 하나의 문자만 남긴 문자열을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 1 ≤ my_string ≤ 110
+         * : my_string은 대문자, 소문자, 공백으로 구성되어 있습니다.
+         * : 대문자와 소문자를 구분합니다.
+         * : 공백(" ")도 하나의 문자로 구분합니다.
+         * : 중복된 문자 중 가장 앞에 있는 문자를 남깁니다.
+         */
+        
+        function solution03(my_string) {
+            /**
+             * value 값만을 저장하여 중복을 허용하지 않는 collection (중복값 제거)
+             * 동일한 값을 1ea만 가질 수 있음
+             * 대소문자 구분
+             */
+            let setArr = new Set([...my_string]);
+            let newArr = [...setArr].join('');
+            
+            return newArr;
+        }
+        console.log('03) 중복된 문자 제거', solution03('We are the world')); // We arthwold
+
+        /**
+         * 04) 모스부호 (1)
+         * 문제 설명 : 머쓱이는 친구에게 모스부호를 이용한 편지를 받았습니다. 그냥은 읽을 수 없어 이를 해독하는 프로그램을 만들려고 합니다. 문자열 letter가 매개변수로 주어질 때, letter를 영어 소문자로 바꾼 문자열을 return 하도록 solution 함수를 완성해보세요.
+        모스부호는 다음과 같습니다.
+        morse = { 
+            '.-':'a','-...':'b','-.-.':'c','-..':'d','.':'e','..-.':'f',
+            '--.':'g','....':'h','..':'i','.---':'j','-.-':'k','.-..':'l',
+            '--':'m','-.':'n','---':'o','.--.':'p','--.-':'q','.-.':'r',
+            '...':'s','-':'t','..-':'u','...-':'v','.--':'w','-..-':'x',
+            '-.--':'y','--..':'z'
+        }
+         * 제한 사항
+         * : 1 ≤ letter의 길이 ≤ 1,000
+         * : return값은 소문자입니다.
+         * : letter의 모스부호는 공백으로 나누어져 있습니다.
+         * : letter에 공백은 연속으로 두 개 이상 존재하지 않습니다.
+         * : 해독할 수 없는 편지는 주어지지 않습니다.
+         * : 편지의 시작과 끝에는 공백이 없습니다.
+         */
+        
+        function solution04(letter) {
+            const morse = { 
+                '.-':'a','-...':'b','-.-.':'c','-..':'d','.':'e','..-.':'f',
+                '--.':'g','....':'h','..':'i','.---':'j','-.-':'k','.-..':'l',
+                '--':'m','-.':'n','---':'o','.--.':'p','--.-':'q','.-.':'r',
+                '...':'s','-':'t','..-':'u','...-':'v','.--':'w','-..-':'x',
+                '-.--':'y','--..':'z'
+            }
+            
+            // let answerArr = [];
+            // let arr = letter.split(' ');
+
+            // for (let j = 0; j < arr.length; j++) {
+            //     for(let i = 0; i < Object.keys(morse).length; i++) {
+            //         if(arr[j] == Object.keys(morse)[i]) {
+            //             answerArr.push(Object.values(morse)[i]);
+            //         }
+            //     }
+            // }
+            // return answerArr.join('');
+
+            // reduce 풀이
+            return letter.split(' ').reduce((prev, cur) => prev + morse[cur], '');
+        }
+        console.log('04) 모스부호 (1)', solution04(".--. -.-- - .... --- -.")); // python
+
+        /**
+         * 05) 합성수 찾기
+         * 문제 설명 : 약수의 개수가 세 개 이상인 수를 합성수라고 합니다. 자연수 n이 매개변수로 주어질 때 n이하의 합성수의 개수를 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 1 ≤ n ≤ 100
+         */
+        
+        function solution05(n) {
+            let answer = 0;
+            let arr = [];
+            for (let i = 1; i <= n; i++) {
+                for (let j = 2; j < i; j++) {
+                    if(i % j === 0) {
+                        arr.push(i);
+                    }
+                }
+            }
+            answer = [...new Set(arr)].length;
+            return answer;
+        }
+        console.log('05) 합성수 찾기', solution05(10)); // 8
+    </script>
+</body>
+</html>
