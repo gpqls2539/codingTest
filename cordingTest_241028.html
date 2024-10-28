@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict!';
+        
+        /**
+         * 01) flag에 따라 다른 값 반환하기
+         * 문제 설명 : 두 정수 a, b와 boolean 변수 flag가 매개변수로 주어질 때, flag가 true면 a + b를 false면 a - b를 return 하는 solution 함수를 작성해 주세요.
+         * 제한 사항
+         * : -1,000 ≤ a, b ≤ 1,000
+         */
+        
+        function solution01(a, b, flag) {
+            if(flag === true) {
+                return a + b
+            } else {
+                return a - b
+            }
+
+            // 삼항 연산자
+            // return (flag)? a+b : a-b;
+        }
+        console.log('01) flag에 따라 다른 값 반환하기', solution01(-4, 7, true)); // 3
+    </script>
+</body>
+</html>
