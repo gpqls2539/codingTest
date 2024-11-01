@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict!';
+        
+        /**
+         * 01) 문자열을 정수로 변환하기
+         * 문제 설명 : 숫자로만 이루어진 문자열 n_str이 주어질 때, n_str을 정수로 변환하여 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 1 ≤ n_str ≤ 5
+         * : n_str은 0부터 9까지의 정수 문자로만 이루어져 있습니다.
+         */
+        
+        function solution01(n_str) {
+            return Number(n_str);
+        }
+        console.log('01) 문자열을 정수로 변환하기', solution01("10")); // 10
+        
+        /**
+         * 02) 문자열 정수의 합
+         * 문제 설명 : 한 자리 정수로 이루어진 문자열 num_str이 주어질 때, 각 자리수의 합을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 3 ≤ num_str ≤ 100
+         */
+        
+        function solution02(num_str) {
+            return [...num_str].reduce((prev,cur) => Number(prev) + Number(cur), 0);
+        }
+        console.log('02) 문자열 정수의 합', solution02("123456789")); // 45
+    </script>
+</body>
+</html>
