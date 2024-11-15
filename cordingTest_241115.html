@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict!';
+        
+        /**
+         * 01) 공배수
+         * 문제 설명 : 정수 number와 n, m이 주어집니다. number가 n의 배수이면서 m의 배수이면 1을 아니라면 0을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 10 ≤ number ≤ 100
+         * : 2 ≤ n, m < 10
+         */
+        
+        function solution01(number, n, m) {
+            // if(number % n === 0 && number % m === 0) {
+            //     return 1
+            // } else {
+            //     return 0
+            // }
+
+            // 삼항연산자
+            return number % n === 0 && number % m === 0 ? 1 : 0
+        }
+        console.log('01) 공배수', solution01(60, 2, 3)); // 1
+
+        /**
+         * 02) 문자열 곱하기
+         * 문제 설명 : 문자열 my_string과 정수 k가 주어질 때, my_string을 k번 반복한 문자열을 return 하는 solution 함수를 작성해 주세요.
+         * 제한 사항
+         * : 1 ≤ my_string의 길이 ≤ 100
+         * : my_string은 영소문자로만 이루어져 있습니다.
+         * : 1 ≤ k ≤ 100
+         */
+        
+        function solution02(my_string, k) {
+            // const arr = [];
+            // for (let i = 0; i < k; i++) {
+            //     arr.push(my_string)
+            // }
+            // return arr.join('');
+
+            // 한줄 풀이
+            return my_string.repeat(k)
+        }
+        console.log('02) 문자열 곱하기', solution02("string", 3)); // stringstringstring
+
+        /**
+         * 03) n의 배수
+         * 문제 설명 : 정수 num과 n이 매개 변수로 주어질 때, num이 n의 배수이면 1을 return n의 배수가 아니라면 0을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 2 ≤ num ≤ 100
+         * : 2 ≤ n ≤ 9
+         */
+        
+        function solution03(num, n) {
+            return num % n === 0 ? 1 : 0
+        }
+        console.log('03) n의 배수', solution03(98, 2)); // 1
+
+        /**
+         * 04) 문자열로 변환
+         * 문제 설명 : 정수 n이 주어질 때, n을 문자열로 변환하여 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 1 ≤ n ≤ 10000
+         */
+        
+        function solution04(n) {
+            return n.toString()
+        }
+        console.log('04) 문자열로 변환', solution04(123)); // "123"
+
+        /**
+         * 05) 뒤에서 5등까지
+         * 문제 설명 : 정수로 이루어진 리스트 num_list가 주어집니다. num_list에서 가장 작은 5개의 수를 오름차순으로 담은 리스트를 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 6 ≤ num_list의 길이 ≤ 30
+         * : 1 ≤ num_list의 원소 ≤ 100
+         */
+        
+        function solution05(num_list) {
+            return [...num_list].sort((a, b) => a - b).slice(0, 5)
+        }
+        console.log('05) 뒤에서 5등까지', solution05([12, 4, 15, 46, 38, 1, 14])); // [1, 4, 12, 14, 15]
+
+        /**
+         * 06) 정수 부분
+         * 문제 설명 : 실수 flo가 매개 변수로 주어질 때, flo의 정수 부분을 return하도록 solution 함수를 완성해주세요.
+         * 제한 사항
+         * : 0 ≤ flo ≤ 100
+         */
+        
+        function solution06(flo) {
+            return Math.floor(flo)
+        }
+        console.log('06) 정수 부분', solution06(1.42)); // 1
+
+        /**
+         * 07) 배열 비교하기
+         * 문제 설명 : 이 문제에서 두 정수 배열의 대소관계를 다음과 같이 정의합니다.
+            - 두 배열의 길이가 다르다면, 배열의 길이가 긴 쪽이 더 큽니다.
+            - 배열의 길이가 같다면 각 배열에 있는 모든 원소의 합을 비교하여 다르다면 더 큰 쪽이 크고, 같다면 같습니다.
+            두 정수 배열 arr1과 arr2가 주어질 때, 위에서 정의한 배열의 대소관계에 대하여 arr2가 크다면 -1, arr1이 크다면 1, 두 배열이 같다면 0을 return 하는 solution 함수를 작성해 주세요.
+         * 제한 사항
+         * : 1 ≤ arr1의 길이 ≤ 100
+         * : 1 ≤ arr2의 길이 ≤ 100
+         * : 1 ≤ arr1의 원소 ≤ 100
+         * : 1 ≤ arr2의 원소 ≤ 100
+         * : 문제에서 정의한 배열의 대소관계가 일반적인 프로그래밍 언어에서 정의된 배열의 대소관계와 다를 수 있는 점에 유의해주세요.
+         */
+        
+        function solution07(arr1, arr2) {
+            if(arr1.length < arr2.length) {
+                return -1
+            } else if(arr1.length > arr2.length) {
+                return 1
+            } else {
+                const sumArr1 = arr1.reduce((prev, cur) => prev + cur, 0);
+                const sumArr2 = arr2.reduce((prev, cur) => prev + cur, 0);
+                if(sumArr1 < sumArr2) {
+                    return -1
+                } else if(sumArr1 > sumArr2) {
+                    return 1
+                } else { return 0 }
+            }
+        }
+        console.log('07) 배열 비교하기', solution07([100, 17, 84, 1], [55, 12, 65, 36]	)); // 1
+
+        /**
+         * 08) rny_string
+         * 문제 설명 : 'm'과 "rn"이 모양이 비슷하게 생긴 점을 활용해 문자열에 장난을 하려고 합니다. 문자열 rny_string이 주어질 때, rny_string의 모든 'm'을 "rn"으로 바꾼 문자열을 return 하는 solution 함수를 작성해 주세요.
+         * 제한 사항
+         * : 1 ≤ rny_string의 길이 ≤ 100
+         * : rny_string은 영소문자로만 이루어져 있습니다.
+         */
+        
+        function solution08(rny_string) {
+            // return [...rny_string].reduce((prev, cur) => {
+            //     if(cur === 'm'){
+            //         cur = 'rn'
+            //     }
+            //     return prev + cur
+            // }, [])
+
+            // 왜 어렵게 생각했지..
+            return rny_string.replaceAll(/m/g, 'rn');
+        }
+        console.log('08) rny_string', solution08("programmers")); // prograrnrners
+    </script>
+</body>
+</html>
